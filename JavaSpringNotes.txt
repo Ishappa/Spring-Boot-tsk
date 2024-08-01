@@ -8,6 +8,9 @@
 6.Excecute Statement
 7.Close
 
+--> to create a jdbc project create mvn project and add library jdbc connector
+ --> steps : file-> pro structure-> library-> java-> your mysql connector jar file.
+
 -> Load and Register Driver is automatically done by the java after java 6 version.
 
 Springs:  Lightweight Framework 
