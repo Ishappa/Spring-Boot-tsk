@@ -1,0 +1,63 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--     scope="prototype" it will use for create multiple objects when we call obj by using id (refer: app class)-->
+<!--<bean id="alien1" class="org.ish.Alien" scope="prototype"></bean>-->
+
+
+<!--    <bean id="alien1" class="org.ish.Alien" >-->
+<!--    <property name="age" value="21"></property>  &lt;!&ndash; setting values to variables&ndash;&gt;-->
+<!--    <property name="lap" ref="lap1"></property>   &lt;!&ndash; passing obj to lap variable by using ref as line last created obj &ndash;&gt;-->
+<!--    </bean>-->
+
+
+
+<!--    passing the args values to constructor three-way we can pass the values-->
+<!--     by using autowire based on name or type it will take obj to class-->
+
+    <bean id="alien1" class="org.ish.Alien" autowire="byType">
+<!--    <bean id="alien1" class="org.ish.Alien" autowire="byName">-->
+        <property name="age" value="32"/>
+        <property name="com" ref="com"/>
+
+
+<!--        below is the example for inner bean                 -->
+<!--        <property name="com" ref="com">-->
+<!--        <bean id="com1" class="org.ish.Laptop" primary="true">-->
+
+<!--        </bean>-->
+<!--        </property>-->
+
+
+
+
+<!--        by using type and value if we have only 2 different type args-->
+<!--       <constructor-arg type="org.ish.Laptop" ref="lap1"/>-->
+<!--        <constructor-arg type="int" value="25"/>-->
+
+<!--        this is 2nd best way to practice based on index position we can pass the value-->
+<!--        <constructor-arg index="0" value="24"/>-->
+<!--        <constructor-arg index="1" ref="lap1"/>-->
+
+
+<!--        this is 3rd way is we can pass using variable names-->
+<!--        note: you should pass values based on args sequentially or else you have use annotation for name above contructor-->
+<!--        <constructor-arg name="lap" ref="lap1"/>-->
+<!--        <constructor-arg name="age" value="28"/>-->
+
+<!--        sequationally way no need annotation for above constructor also name specification also optional-->
+<!--        <constructor-arg value="28"/>-->
+<!--        <constructor-arg ref="lap1"/>-->
+
+    </bean>
+    <bean id="com1" class="org.ish.Laptop" primary="true"/>
+<!--    when we have multiples obj using byType it will get confuse and get error we can use primary type-->
+
+<!--    <bean id="com" class="org.ish.Desktop" lazy-init="true"/>-->
+<!--   if we are not using lazy init to the bean it will get create the obj default we can see print something in all class constructor-->
+
+<!--    <bean id="lap1" class="org.ish.Laptop"/> &lt;!&ndash; this is Laptop object i am using this in property&ndash;&gt;-->
+
+</beans>

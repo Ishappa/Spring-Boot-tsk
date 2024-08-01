@@ -1,0 +1,310 @@
+----https://start.spring.io/
+----------JDBC----------------
+1.Import Packages
+2.Load Driver
+3.Register Driver
+4.Create Conncetion
+5.Create Statement
+6.Excecute Statement
+7.Close
+
+-> Load and Register Driver is automatically done by the java after java 6 version.
+
+Springs:  Lightweight Framework 
+
+we can refer the website spring.io and spring documentation.
+
+ Apache Tomcat:  is an open-source web server and Servlet container for Java code.
+ 
+ IOC(Inversion of control): controlling the objects and flow
+ 
+ -> its a container and it includes a objects.
+ 
+ Spring IoC (Inversion of Control):------------------------------
+ 
+-> Container is the core of Spring Framework. 
+-> It creates the objects, configures and assembles their dependencies, manages their entire life cycle.
+-> The Container uses Dependency Injection(DI) to manage the components that make up the application.
+-> Spring IoC is the mechanism to achieve loose-coupling between Objects dependencies.
+-> To achieve loose coupling and dynamic binding of the objects at runtime, objects dependencies are injected by other assembler objects.
+
+ Springs : its a framework and we have do dependency injection.
+ -> Requires more manual setup and configuration.
+ ->  Ideal for large, complex enterprise applications where you need control over configurations and components.
+ 
+ApplicationContext: its used to get the objects from the container.
+-> its not a part of java its a part of spring 
+-> we need to add some dependencies while wokring with spring project 
+(browse the mvnrepository and search for spring context add the dependencies in pom file of our project).
+
+-> spring xml configuration : we can get the defenitoin from (browse: spring xml confingeration and copy and paste it in resource ml.file) 
+
+Beans/Spring beans: 
+-> beans are the objects and these managed by the springs.
+
+.xml
+
+example: defaulty scope="singleton" will be, it means create only one obj when you using same id
+		-> but when use scope="prototype" it will cerate diffrent obj when you call by using same id
+		
+<bean id="alien1" class="org.ish.Alien" scope="prototype">
+</bean>
+
+
+ DI(Dependency Injection): 
+ 
+
+ Spring boot: its a standalone application----------------------------
+ 
+ -> Provides auto-configuration and defaults to minimize setup time.
+ ->  Perfect for microservices, REST APIs, and any application where you want to get up and running quickly with minimal configuration.
+ -> IoC Container: The Spring Boot application context acts as the IoC container.
+ 
+ -> Spring Boot uses IoC to manage beans and their dependencies, enabling auto-configuration and providing sensible defaults. 
+
+
+1.Ecliplse go to help -> -> ecliplse market place -> search for springboot 6 and download the 
+2.intellije community version we can create project from start.spring.io
+
+
+Reference:SpringBootDemo
+
+--> @Component: annotation on Laptop and Alien classes tells Spring that these classes are Spring components.
+--> @SpringBootApplication: annotation in the SpringBootDemoApplication class enables component scanning,
+ which means Spring will scan the specified package (and its sub-packages) for classes annotated with @Component, @Service, @Repository, @Controller, etc.
+
+--> During the startup, Spring creates instances (beans) of all the classes annotated with @Component and registers them in the application context.
+--> @Autowired: annotation on the laptop field in the Alien class tells Spring to inject an instance of Laptop into the Alien class.
+		Spring finds the Laptop bean in the application context and injects it into the Alien bean.
+
+------------------------------Spring JDBC-------------------------------
+To achive this project
+
+-->using RowMapper we can fetch the data from table.(used in repo)
+
+
+1.we have to use springjdbc dependency.
+2.h2 dependency for storing data without using external database we can create table and store data inside the project only.
+-> h2 is a embedded database
+ex:in pjct structure under resourcepackage->for create table create schema.sql file and data.sql for adding data.
+
+------------------Spring jdbc working or connecting mysql same project -------------
+-> no need to change anything in code.
+-> pom.xml add mysql dependency and comment or remove h2 dependency.
+->go to resource folder and open application.properties file -> and add below lines.
+
+	spring.datasource.url = jdbc:mysql://localhost:3306/springjdbcdemo
+	spring.datasource.username = root
+	spring.datasource.password = root
+	spring.datasource.driver-class-name = com.mysql.cj.jdbc.Driver
+
+------------------Java Servlet/ web app-------------
+->create a mvm project and add dependencies in pom
+1. jakarta servlet -4.0.4
+2. tomcat embedded -8.5.96
+
+---------------MVC------------------
+1.Model-->POJO(plain old java objects)-->model contains data in the form of objects.
+2.View--> JSP (Java server page)--> it contains html content for respose the data to clients.
+3.Controller --> Servlet--> recives the request from clients and sent it to the model.
+
+----step by step process of MVC----
+
+-->clients request will come to Controller--> then its send to model it willl get data from database or any --> then it will send respoce to 
+View stage (jsp). 
+
+--> tomcat will able to run only servlets behind the scene jsp page will convert in to servlet
+
+
+----------------------------------Create a SpringBoot Web project-----------------------
+
+-->Use Spring.io for creating project and use jar file beacause springweb includes default embedd tomcat you are working on tomcat server.
+
+--> while creating add dependency Spring web
+--> inside under main folder you have to create webapp folder and under this folder create index.jsp file/ file name can be different.
+--> write some code in the file. and jsp file will handle or call by the controller .
+--> when client send request to server, controller handles the request first, processes it, and then forwards it to the JSP view to render the response.
+--> url will be or path depends on method top of.
+
+--> to convert jsp into servlet we have to one more dependency--------------
+1. goto mvnrepo -> search tomcat server -- check our embed tomcat server version in pjct(external lib)(10.1.25) --> download same -> tomcat jasper.
+2. then add dependecy in pom file
+
+-->HttpSession : HTTP sessions store user data across multiple requests.
+-->HTTP Session Usage: You can set, get, and invalidate session attributes using HttpSession.
+--> when we want to diplay our result from from or any respose to webpage use seesion for set attribute the displaying using jsp file
+
+--> instead using HttpSession we can use Model object for get or set the response the data to webpage/ jsp -----------------------------
+
+@HttpSession: Session scope, long-lived, user-specific data, accessible across multiple requests and controllers.
+@Model: Request scope, short-lived, transient data, accessible only within the current request handling method and the view rendered by it.
+
+--> in controller class instead of using retun index.jsp or any our jsp file using extension .jsp we can create other folder put all files in it (ex: views folder)
+--> under webapp -> views -> move all jsp files from webapp to views -> write properties inside application.poprty file it will be under resource folder. 
+	->even refer website(Search as Spring applction property).
+
+--------------------------// instead of using Model we can using ModelAndView object------------------
+Model: Simplifies adding multiple attributes to the view, used as a method parameter, best for straightforward cases.
+ModelAndView: Encapsulates both the model and the view in a single object, used as a method return type, offers greater flexibility for complex scenarios
+
+--------------------------------------------------SpringMvc-------------------------------
+
+->using ecliplseIDE or create pjct using Spring.io
+-> create mvn project and selct catelog -> internal with -> mvn-webApp -> provide g id and arch id.
+-> after creating a project somw errors will show
+-> index.jsp is no need we can delet it
+-> if java folder not available default under src->main->we can crete folder as java then automatically src/main/java it will get create under pjct.
+
+-> create folder structure something called com.ish.SpringMvcDemo under java folder it will reflect under src/main/java we can create package as com.ish.SpringMvcDemo. 
+-> then we can create classes under  src/main/java -> com.ish.SpringMvcDemo this package.
+
+--> we need 3 dependecies.for this spring mvc pjct
+1. mvnrepository-> search for Spring mvc select-> Spring Web MVC -> version 3rd last relased or 2nd / 6.1.0.
+2. click on server in project and download apache last one 10. version specify directry where it should download and after dowloaded select our project.
+
+Configur dispactcher servlet.
+-------------------------------
+--> open web.xml file under webApp and add servlet class and name  
+--> org.springframework.web.servlet.DispatcherServlet.class(you will get this from library-> mvn depen-> webmvc jar-> org.---.servlet-> dispatcherservlt.class (copy qulified name). )
+example: 
+<servlet>
+  <servlet-name>ish</servlet-name>
+  <servlet-class>org.springframework.web.servlet.DispatcherServlet.class</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>ish</servlet-name>
+  <url-pattern>/</url-pattern>
+  </servlet-mapping>
+</web-app> 
+
+Set up Internal view Resource Resolver
+--------------------------------------------
+for above web.xml file we have to create refrence for resolver file (ish-servlet.xml). 
+
+    <ctx:component-scan base-package="com.ish" />
+    <ctx:annotation-config/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+-----------------------------JobApp Spring boot------------------------------------
+1. create maven prjt using spring initializer(spring.io).
+2. while creating add dependency are SPring web and lombok.
+3. add 3 more dependencies in pom file by searching in mvnrepo website
+
+--> whenever work with jsp pages its needed.
+
+	1.tomcat jasper(10.1.25).
+	2. jsp.jstl-api(3.0.0)
+	3. jsp.jstl(3.0.0)
+
+
+PROCESS: client -> Controller -> Service -> Repo -> database/file/or any server
+
+--------------------------Rest using Spring Boot---------------------------
+
+REST (Representational State Transfer):  is a way to design web services that interact over the internet. It's based on standard web protocols, mainly HTTP
+
+1. Resources: Everything in REST is considered a resource, like users, job posts, or products. Each resource is identified by a unique URL.
+
+2. HTTP Methods: REST uses standard HTTP methods to perform operations on resources:
+
+	GET: Retrieve a resource.
+	POST: Create a new resource.
+	PUT: Update an existing resource.
+	DELETE: Remove a resource.
+	PATCH: Partially update a resource.
+
+
+
+end to end process:
+
+1.User Interaction: User interacts with the web page.
+2.Sending a Request: Frontend sends an HTTP request to the backend.
+3.Receiving the Request: Backend controller receives the request.
+4.Processing the Request: Controller processes the request, calling service methods.
+5.Database Interaction: Service methods interact with the repository layer to query or update the database.
+6.Generating the Response: Backend generates a response with the requested data.
+7.Sending the Response: Backend sends the response back to the frontend.
+8.Handling the Response: Frontend processes the response and updates the UI.
+
+
+
+-------------------------Rest project process or structure----------------------------------
+
+refer the project and compare JobApp and Spring-boot-rest--
+--> Controller class will return the data instead of returning view name and use @RestController top of class .
+	example:  @GetMapping("jobPosts")
+   		  public List<JobPost> getAllJobs(){
+	          return service.getAllJobs();
+		 }
+
+
+-----------------------------Understanding the React UI------------------------
+
+1. After creating react proj run : npm install -g json-server
+2. run cmd : json-server --watch db.json --port 8000  
+	--> we are setting run our server on port 8000 default will be 3000.   
+	ex: JSON Server started on PORT :8000
+	Watching db.json...
+	Static files:
+	Serving ./public directory if it exists
+
+	Endpoints:
+	http://localhost:8000/posts
+
+3. open new terminal run 
+	cmd: npm install --> for  install packages 
+
+4. after installed run application
+	cmd: npm start
+
+
+----------------------------211. Connecting React and Spring-------------------------
+--> set out backend fetch url path to react file src->compo->.jsx file ->  
+
+	example: const response = await axios.get(`http://localhost:8080/jobPosts`); //this path from the backend
+--> run react projct --> cmd: npm start
+	
+
+--> take default url of react after run the react project set cross origin in backend rest controller class
+
+example:
+	@RestController
+	@CrossOrigin(origins = "http://localhost:3000/")
+	public class JobRestController {
+
+--> getting job based on ID and pathvariable need to specify out variable name if we have multiple.
+
+    @GetMapping("jobPost/{jobId}")
+    public JobPost getJob(@PathVariable("jobId") int jobId){
+        return service.getJob(jobId);
+    }
+
+
+-->when you want add/post or put/update data to server we need @RequestBody this is important achive add data inside server.
+
+ex:     @PostMapping("jobPost")
+    public JobPost addJob(@RequestBody JobPost jobPost){
+         service.addJob(jobPost);
+//        return jobPost; //what we are that will return
+       	  return service.getJob(jobPost.getPostId());// adding obj and fetching obj from server or source.
+    }
+
+--> in library list deafult in our project exist jackson library its use for convert object to json format.
+--> if we want to work or convert into xml format we need to add dependecy called jackson dataformat xml in pom file.
+	(version should be same as jackson which already present in library).ex: 2.17.2
+
+--> when you search path in postman/any we have set header as
+	key: Accept
+	value: application/xml then run it returns data in xml format.
+
+
+--> instead of set header directly we can use to methods for recieve and respose data type
+
+example :  @GetMapping(value = "jobPosts" , produces = "application/xml")--> for fetching or recive to the end user
+	    @PostMapping(value = "jobPost", consumes = "application/json")--> server takes only json type data.	

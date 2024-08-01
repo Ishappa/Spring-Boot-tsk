@@ -1,0 +1,57 @@
+body {
+    background-color: black;
+    color: #00FF00;
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 0 0 10px #00FF00;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid #00FF00;
+    border-radius: 10px;
+    margin: auto;
+    width:500px;
+}
+
+label, input, button {
+    margin: 10px 0;
+}
+
+input, button {
+    background-color: black;
+    color: #00FF00;
+    border: 2px solid #00FF00;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+input:focus, button:focus {
+    outline: none;
+    box-shadow: 0 0 5px #00FF00;
+}
+
+button {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #00FF00;
+    color: black;
+}
+
+@keyframes crt-flicker {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.85;
+    }
+}
+
+body, form {
+    animation: crt-flicker 0.1s infinite;
+}

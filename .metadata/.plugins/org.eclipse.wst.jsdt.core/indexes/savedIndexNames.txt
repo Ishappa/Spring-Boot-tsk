@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+E:\SpringProject-All-Telusko\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2527094810.index
+4168980058.index
+2494310754.index
+4070142456.index
+1841539976.index
+1063658537.index

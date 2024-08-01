@@ -1,0 +1,7 @@
+INDEX VERSION 1.134
+E:\SpringProject-All-Telusko\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2282837922.index
+\SpringMvcDemo\src\main\resources
+E:\SpringProject-All-Telusko\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3775877230.index
+\SpringMvcDemo\src\main\java
+E:\SpringProject-All-Telusko\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3292060489.index
+\SpringMvcDemo\src\main\java
