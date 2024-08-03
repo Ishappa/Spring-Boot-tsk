@@ -17,12 +17,15 @@ const Edit = () => {
   const [form, setForm] = useState(initial);
   const [currId] = useState(location.state.id);
 
-
   useEffect(() => {
     const fetchInitialPosts = async (id) => {  
-      const response = await axios.get(`http://localhost:8080/jobPost/${id}`);
-      console.log(response.data);
-      setForm(response.data);
+      try {
+        const response = await axios.get(`http://localhost:8080/jobPost/${id}`);
+        console.log(response.data);
+        setForm(response.data);
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchInitialPosts(currId);
   }, [currId]);
@@ -30,9 +33,10 @@ const Edit = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios     
-      .post("http://localhost:8080/jobPost",form)
+      .put("http://localhost:8080/jobPost", form)
       .then((resp) => {
         console.log(resp.data);
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -40,31 +44,28 @@ const Edit = () => {
   };
 
   const handleChange = (e) => {
-    setForm({ ...form, postTechStack: [...form.postTechStack, e.target.value] });
+    const skill = e.target.value;
+    setForm((prevForm) => {
+      const updatedSkills = prevForm.postTechStack.includes(skill)
+        ? prevForm.postTechStack.filter((item) => item !== skill)
+        : [...prevForm.postTechStack, skill];
+
+      return { ...prevForm, postTechStack: updatedSkills };
+    });
   };
 
   const skillSet = [
-    {
-      name: "Javascript",
-    },
-    {
-      name: "Java",
-    },
-    {
-      name: "Python",
-    },
-    {
-      name: "Django",
-    },
-    {
-      name: "Rust",
-    },
+    { name: "Javascript" },
+    { name: "Java" },
+    { name: "Python" },
+    { name: "Django" },
+    { name: "Rust" },
   ];
 
   return (
     <Paper sx={{ padding: "1%" }} elevation={0}>
       <Typography sx={{ margin: "3% auto" }} align="center" variant="h5">
-        Edit New Post
+        Update Job Post
       </Typography>
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <Box
@@ -97,9 +98,7 @@ const Edit = () => {
             type="number"
             sx={{ width: "50%", margin: "2% auto" }}
             required
-            onChange={(e) =>
-              setForm({ ...form, reqExperience: e.target.value })
-            }
+            onChange={(e) => setForm({ ...form, reqExperience: e.target.value })}
             label="Years of Experience"
             variant="outlined"
             value={form.reqExperience}
@@ -116,35 +115,31 @@ const Edit = () => {
             value={form.postDesc}
           />
           <Box sx={{ margin: "1% auto" }}>
-            <h3>Please mention required skills</h3>
+            <Typography variant="h6">Please mention required skills</Typography>
             <ul>
-              {skillSet.map(({ name }, index) => {
-                return (
-                  <li key={index}>
-                    <div>
-                      <div>
-                        <input
-                          type="checkbox"
-                          id={`custom-checkbox-${index}`}
-                          name={name}
-                          value={name}
-                          onChange={handleChange}
-                        />
-                        <label htmlFor={`custom-checkbox-${index}`}>
-                          {name}
-                        </label>
-                      </div>
-                    </div>
-                  </li>
-                );
-              })}
+              {skillSet.map(({ name }, index) => (
+                <li key={index}>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id={`custom-checkbox-${index}`}
+                      name={name}
+                      value={name}
+                      checked={form.postTechStack.includes(name)}
+                      onChange={handleChange}
+                    />
+                    <label htmlFor={`custom-checkbox-${index}`}>
+                      {name}
+                    </label>
+                  </div>
+                </li>
+              ))}
             </ul>
           </Box>
           <Button
             sx={{ width: "50%", margin: "2% auto" }}
             variant="contained"
             type="submit"
-            onClick={() => navigate("/")}
           >
             Submit
           </Button>
