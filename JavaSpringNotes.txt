@@ -311,3 +311,91 @@ ex:     @PostMapping("jobPost")
 
 example :  @GetMapping(value = "jobPosts" , produces = "application/xml")--> for fetching or recive to the end user
 	    @PostMapping(value = "jobPost", consumes = "application/json")--> server takes only json type data.	
+
+
+
+-----------------------------------------------Spring Data Jpa---------------------------------------------------------------
+
+--> Hibernate: its a tool is used to store a data into database it will create table by using annotations.
+	--> it will make a code less.
+
+--> To create a project use spring.io and we need dependecy as 1. Spring data jpa 2. Mysql connecter  .
+--> we have set the application properties for connect to db and create a table.
+
+Syntax:  
+
+spring.datasource.url = jdbc:mysql://localhost:3306/springjpa
+spring.datasource.username = root
+spring.datasource.password = root
+spring.datasource.driver-class-name = com.mysql.cj.jdbc.Driver
+
+spring.jpa.hibernate.ddl-auto = update     --> update is use create a table if not prsent and if created alreday update values .
+spring.jpa.show-sql=true
+
+--> create a class make it as @Entity and @compo
+--> create interface extends JpaReposi<classname, Integre>  @repository. integer mean-> primaryKey.
+--> create obj for class and inetrface in spring class.
+
+
+--> to save the data of obj into database call this method parameter obj reference->repo.save(s1); 
+
+-----> System.out.println(repo.findAll());// to fetch and display all rows from table.
+----> System.out.println(repo.findById(101));// display based on Id.
+
+---------------Update and Delete-----------
+
+Update--> modify our objcts values which one want to update and  call repo.save(s2).
+Delete--> call delete method repo.delete(s2).
+
+
+
+-----Query DSL-------------
+
+---> In Repo insterface you can Write custome method which is not available predefined method under repo.
+--> custome method name should be proper and related to querry for such as findByName() ,findByMarksGreaterThan(), findByMarksLesserThan etc..
+--> later you can use them in main class (Springbootapli)to call.
+
+example: @Repository
+public interface StudentRepo extends JpaRepository<Student,Integer> {
+
+List<Student> findByName(String name);
+
+List<Student> findByMarks(int marks);
+
+List<Student> findByMarksGreaterThan(int marks);
+}
+
+-------------Connect Spring-boot-Rest project(JobApp) to store data into db----------------------
+
+-->dependency needed--> 1. data-jpa and 2. mysql-connector.
+-->application properies for conncet db and jpa.
+-->if we have collection of data in one column we can use @ElementCollection on top of variable --> it will create new table with forign key.
+	example:   @ElementCollection
+  		  private List<String> postTechStack;
+--> instead of writing custome code for repository class, create interface as repo and extends JpaRep<classname, Integer>{}.
+--> we can use all obj inside service class only create one method for load all obj or save all.
+
+------------Search By keyword----------------
+
+
+--> create custome method in repo call it in service and controller .
+
+example : List<JobPost> findByPostProfileContainingOrPostDescContaining(String postProfile, String Desc);
+
+explain: findByPostProfile and findByPostProfile --> it will read internally find based on PostProfile and PostDesc variable and Containing is reserve keyword for checking keyword.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

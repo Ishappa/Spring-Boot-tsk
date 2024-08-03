@@ -24,6 +24,4 @@ public class SpringJdbcExApplication {
 		List<Student> students = studentService.getStudents();
 		System.out.println(students);
 	}
-
-
 }

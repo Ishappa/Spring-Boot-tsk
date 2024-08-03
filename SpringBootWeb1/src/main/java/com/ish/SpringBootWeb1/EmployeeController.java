@@ -41,6 +41,6 @@ public class EmployeeController {
 //  3.  @ModelAttribute("employee1") is optional we can use method ref name in jsp we can get details----------------
     @RequestMapping("addEmployee")
     public String addEmployee(Employee employee){
-        return "empResult";
+        return "empResult"; 
     }
 }
