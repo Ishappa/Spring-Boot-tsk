@@ -38,9 +38,8 @@ public class JobRestController {
 //        return ResponseEntity.ok(successMessage);
 //    }
 
+
     //when you want send or request data to server we need @RequestBody
-
-
 //    @PostMapping(value = "jobPost", consumes = "application/json")
     @PostMapping("jobPost")
     public String addJob(@RequestBody JobPost jobPost) {
