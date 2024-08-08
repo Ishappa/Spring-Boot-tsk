@@ -9,6 +9,7 @@ public class LaptopService {
 
     @Autowired
     private LaptopRepository lapRepo;
+
     public void addLaptop(Laptop lap){
        lapRepo.save(lap);
     }

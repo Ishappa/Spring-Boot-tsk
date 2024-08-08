@@ -23,8 +23,38 @@ we can refer the website spring.io and spring documentation.
  
  -> its a container and it includes a objects.
  
- Spring IoC (Inversion of Control):------------------------------
+ ---------------------------Spring IoC (Inversion of Control):------------------------------
+
+--------xml base-------------
+
+
+
+
+--------java-config:--------
+
+-->To create a project we need Dependency 1. Spring context 
+--> use @Component for all class 
+-->use @Configeration and @ComponentScan for config class.
+-->@ComponentScan-> it wll scan all compo class if we have multiple compo class(exampl: laptop and desktop).
+-->use @primary for which one we have to take imple or consider or qulifier the class.
+
+--> 3 ways for qualifier for class if we have multiple imple for single interface: 
+1. use @Qualifier("lap") top of getmathod of intialize bean and ("lap") -> should metion @Component("lap") on laptop class.
+2. we can use lowercase class name directly example: @Qualifier("laptop").
+3. we can use @primary of top of our component class ex: Laptop class.
+
+-->if you use all at same time priority more will be @Component("lap") --> @Qualifier("lap")
+
+-> below example it will take imple of method of compouter is laptop.
+
+
+ex:    @Autowired
+    @Qualifier("lap")// i used @primary for Desktop but still calling lap implementation priority more for this
+    public void setCom(Computer com) {
+        this.com = com;
+    }
  
+
 -> Container is the core of Spring Framework. 
 -> It creates the objects, configures and assembles their dependencies, manages their entire life cycle.
 -> The Container uses Dependency Injection(DI) to manage the components that make up the application.
@@ -105,6 +135,77 @@ ex:in pjct structure under resourcepackage->for create table create schema.sql f
 ->create a mvm project and add dependencies in pom
 1. jakarta servlet -4.0.4
 2. tomcat embedded -8.5.96
+
+-->mvc proj structure webapp folder under 2 folders--> views and WEB-INF
+--> under views write jsp pages.
+--> under web-Inf write create 2 xml files --> web.xml and dispatcher-servlet.xml.
+
+web.xml
+--------------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         id="WebApp_ID" version="3.1">
+
+    <display-name>spring-mvc-demo</display-name>
+
+    <absolute-ordering />
+
+    <!-- Spring MVC Configs -->
+
+    <!-- Step 1: Configure Spring MVC Dispatcher Servlet -->
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+        <!-- Optional: Specify the location of the Spring configuration file [<init-param>: Optional if your configuration file is named dispatcher-servlet.xml]-->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring-mvc-demo-servlet.xml</param-value>
+        </init-param>
+
+        <!-- Optional: Load the DispatcherServlet at application startup -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!-- Step 2: Set up URL mapping for Spring MVC Dispatcher Servlet -->
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app>
+
+
+dispatcher-servlet.xml
+---------------------
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:ctx="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+  <!-- Step 3: Add support for component scanning -->
+    <ctx:component-scan base-package="com.ish" />
+
+    <!-- Step 4: Add support for conversion, formatting and validation support -->
+    <mvc:annotation-driven/>
+
+    <!-- Step 5: Define Spring MVC view resolver -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>
+
 
 ---------------MVC------------------
 1.Model-->POJO(plain old java objects)-->model contains data in the form of objects.
@@ -319,7 +420,11 @@ example :  @GetMapping(value = "jobPosts" , produces = "application/xml")--> for
 --> Hibernate: its a tool is used to store a data into database it will create table by using annotations.
 	--> it will make a code less.
 
+-->JPA : Repository layer
+	its says no need to write a lot of code and its simplyfies it will give some methods we can use it.
+
 --> To create a project use spring.io and we need dependecy as 1. Spring data jpa 2. Mysql connecter  .
+
 --> we have set the application properties for connect to db and create a table.
 
 Syntax:  
@@ -366,6 +471,7 @@ List<Student> findByMarksGreaterThan(int marks);
 }
 
 -------------Connect Spring-boot-Rest project(JobApp) to store data into db----------------------
+JPA:
 
 -->dependency needed--> 1. data-jpa and 2. mysql-connector.
 -->application properies for conncet db and jpa.
@@ -382,20 +488,70 @@ List<Student> findByMarksGreaterThan(int marks);
 
 example : List<JobPost> findByPostProfileContainingOrPostDescContaining(String postProfile, String Desc);
 
+	explanation: its chceking keyword exist(ex: java or any) in posts profile or posts desc then filter jobs and display.
+
 explain: findByPostProfile and findByPostProfile --> it will read internally find based on PostProfile and PostDesc variable and Containing is reserve keyword for checking keyword.
 
+--> it helps reduce a code for storeing and fetching data to db by using inbuild methods.
+
+
+example: Repository layer
+
+--> its says no need to write a lot of code and its simplyfies it will give some methods we can use it.
+
+-->Service : jus for connect our request and call for repository.
+
+--------------------------Spring Data Rest-----------------------------------------------------
+
+use for: it will simplifies building RestFul Apis by exposing repo interfaces directly as Restfull endpoints. 
+
+--> here we will remove service and controller layer no need to create controller and service explicitly.
+--> we will use only repository layer.
+--> we can perform crud operations.
+-->Spring Data REST generates RESTful endpoints for entities managed by JPA based on repository interfaces.
+
+Project :
+
+--> 1st we should existing table which already created by jpa or spring rest jpa.
+--> we need 2 dependecy: 1. spring data jpa 2. rest repository.
+-->create model class (Entity class structure class name should be which one we used for spring boot res jpa project). 
+--> create repo interface extend jpa(repo name also should be same). or jus create repo and extends jpa .
+-->add appli prop for mysql and jpa database name should be which already created table by using and maneged by jpa or spring boot rest.
 
 
 
 
+--------------------Spring AOP-----------------------------
+refer official website: spring aop concepts.
+
+--> Aspect oriented program..
+--> use for write business logic handle exceptions , log errors and more..
+-->while excecuting a program or methods logs are use for security, validation and exception handling..
+
+Advices: before, after, when, where should exceute logs.(we will use majorly for methods.)
 
 
+-------------------To create a aop class-----------------
+
+--> use top of class @Component and @Aspect
+--> create logger obj.
+--> then create method
+
+example: 
+
+1.	// @Before("execution(return type, class-name.method-name(args))")
+
+	// *-> means all and i am writing for service class all method when each executes.
+
+    @Before("execution(* com.ish.spring_boot_rest_jpa.service.JobService.*(..))")
+    public void logMethodCall(){
+        LOGGER.info("Method Called");
+    }
 
 
+2.    @Before("execution(* com.ish.spring_boot_rest_jpa.service.JobService.updateJob(..))")//--> based on method when should execute(joint process)
 
-
-
-
-
-
-
+	@Before("execution(* com.ish.spring_boot_rest_jpa.service.JobService.getJob(..)) || execution(* com.ish.spring_boot_rest_jpa.service.JobService.updateJob(..))")
+    	public void logMethodCall(JoinPoint jp){
+        LOGGER.info("Method Called "+ jp.getSignature().getName());
+    }

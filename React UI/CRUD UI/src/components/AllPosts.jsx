@@ -48,7 +48,7 @@ const Search = () => {
 
     return (
         <>
-            <Grid container spacing={2} sx={{ margin: "2%" }}>
+            <Grid container spacing={1} sx={{ margin: "2%" }}>
                 <Grid item xs={12}>
                     <TextField
                         label="Search Job's"
@@ -63,7 +63,7 @@ const Search = () => {
                 </Grid>
                 {posts.map((p) => (
                     <Grid key={p.id} item xs={12} md={6} lg={4}>
-                        <Card sx={{ padding: "3%", overflow: "hidden", width: "84%", backgroundColor: "#ADD8E6" }}>
+                        <Card sx={{ padding: "3%", overflow: "hidden", width: "80%", backgroundColor: "#ADD8E6" }}>
                             <Typography
                                 variant="h5"
                                 sx={{ fontSize: "2rem", fontWeight: "600", fontFamily: "sans-serif" }}

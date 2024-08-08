@@ -29,10 +29,17 @@ public class JobService {
 //    public JobPost getJob(int postId) {
 //        return jobRepo.findById(postId).orElse(new JobPost());
 //    }
+
+//    public JobPost getJob(int postId) {
+//        Optional<JobPost> jobPost = jobRepo.findById(postId);
+//        return jobPost.orElse(null); // Return null if job post is not found
+//    }
+
+    // we can avoid optional and use jus return condition null
     public JobPost getJob(int postId) {
-        Optional<JobPost> jobPost = jobRepo.findById(postId);
-        return jobPost.orElse(null); // Return null if job post is not found
+        return jobRepo.findById(postId).orElse(null);
     }
+
 
     public void updateJob(JobPost jobPost){
          jobRepo.save(jobPost);

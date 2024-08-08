@@ -10,6 +10,7 @@ public class Alien {
 
     @Value("28")
     private int age;
+//    @Autowired
     private Computer com ;
 
     public void code(){

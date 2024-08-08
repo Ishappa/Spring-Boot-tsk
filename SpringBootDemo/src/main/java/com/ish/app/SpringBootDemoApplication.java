@@ -19,10 +19,9 @@ public class SpringBootDemoApplication {
 		service.addLaptop(lap);
 
 
-
-	//		Alien a1 = context.getBean(Alien.class);
-//		System.out.println("Age is : "+a1.getAge());
-//		a1.code();
+		Alien a1 = context.getBean(Alien.class);
+		System.out.println("Age is : "+a1.getAge());
+		a1.code();
 
 
 
