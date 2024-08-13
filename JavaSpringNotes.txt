@@ -177,7 +177,7 @@ web.xml
 </web-app>
 
 
-dispatcher-servlet.xml
+dispatcher-servlet.xml(instead of dispactcher you can use different name but it should be same in servlet-mapping for name in web.xml file)
 ---------------------
 
 <?xml version="1.0" encoding="UTF-8"?>
@@ -379,7 +379,10 @@ refer the project and compare JobApp and Spring-boot-rest--
 
 example:
 	@RestController
-	@CrossOrigin(origins = "http://localhost:3000/")
+	@CrossOrigin(origins = "http://localhost:3000/") 
+	or you can use backend url as proxy in react package.json file(ex:  "proxy": "http://localhost:8080"}) 
+	and no need use full path for crud ex:get('/jobPosts'); proxy will concatinate internally.
+	
 	public class JobRestController {
 
 --> getting job based on ID and pathvariable need to specify out variable name if we have multiple.
@@ -555,3 +558,300 @@ example:
     	public void logMethodCall(JoinPoint jp){
         LOGGER.info("Method Called "+ jp.getSignature().getName());
     }
+
+
+--------------------Spring Security-----------------------
+
+1. Application should work properly.
+2. good performance of application.
+3. stable
+
+https://owasp.org/www-project-top-ten/
+OWASP top10 --> standard awareness document for developers and web application security. 
+
+
+Create a Project:
+--------------------------------
+--> spring.io and add dependencies are
+	1. Spring web 
+	2. Spring Security
+	--> when you add Spring security dependecies internally one more layer will add filters (default securityfilter chain).
+		exampl: authentication filter for login and logout, etc....
+	
+	process:
+	when clinet sends a request it will go in ordering or securityfilter then servlet will give response.
+	
+	exampl: client request --> servlet container--> filter 1 --> filter 2--> filter N--> Servlet.then revese the response.
+	
+	3. Spring boot dev tool
+	
+	
+--> when you want restrict to acces your page or site.
+
+-->if you want to update uses name and password for login 
+--> you have to write properties in application.properties file.
+	example:
+			spring.security.user.name=ish
+			spring.security.user.password=1234
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------important Annotations and uses in spring boot-------------------------------------------
+
+
+1. @SpringBootApplication
+-->Purpose:
+	It's a composite annotation that includes @Configuration, @EnableAutoConfiguration, and @ComponentScan.
+	This annotation marks the main class of a Spring Boot application.
+	
+-->Workflow:
+	When the application starts, Spring Boot scans the package and sub-packages for components, configurations, and services.
+	It automatically configures the application based on the dependencies found.
+	
+2. @Configuration
+-->	Purpose:
+	Indicates that the class can be used by the Spring IoC container as a source of bean definitions.
+
+-->	Workflow:
+	Classes annotated with @Configuration can define beans using @Bean methods. These beans are managed by the Spring container.
+	
+3. @EnableAutoConfiguration
+-->	Purpose:
+	Enables Spring Boot's auto-configuration mechanism.
+
+-->	Workflow:
+	Automatically configures the application based on the dependencies available in the classpath, minimizing the need for manual configuration.
+
+4. @ComponentScan
+-->	Purpose:
+	Tells Spring to scan the current package and its sub-packages for annotated components.
+
+-->	Workflow:
+	Automatically detects classes annotated with @Component, @Controller, @Service, and @Repository, and registers them as beans.
+	
+5. @Controller
+-->	Purpose:
+	Marks a class as a Spring MVC controller, which handles HTTP requests.
+
+--> Workflow:
+	Methods annotated with @RequestMapping handle specific HTTP routes.
+	The controller interacts with the service layer to process the request and return a view or response.
+
+6. @RestController
+--> Purpose:
+	Combines @Controller and @ResponseBody, meaning that the controller returns data directly rather than rendering a view.
+	
+--> Workflow:
+	Typically used for RESTful web services. Methods return JSON or XML responses directly to the client.
+	
+7. @Service
+-->	Purpose:
+	Indicates that a class is a service, which contains business logic.
+	
+--> Workflow:
+	The service layer interacts with the data access layer (repositories) and is injected into controllers or other services using @Autowired.
+	
+8. @Repository
+--> Purpose:
+	Indicates that a class is a repository, which handles data access logic.
+	
+--> Workflow:
+	Spring automatically creates a bean for the repository and manages the data access logic, usually interacting with the database through JPA, JDBC, etc.
+	
+9. @Component
+--> Purpose:
+	A generic stereotype annotation indicating that the class is a Spring-managed component.
+	
+-->Workflow:
+	It is a base annotation for @Controller, @Service, and @Repository. These components are automatically registered as beans in the Spring context.
+
+10. @Autowired
+--> Purpose:
+	Used to inject dependencies into a component automatically.
+	
+--> Workflow:
+	Spring resolves and injects the required bean into the component, ensuring that dependencies are available where needed.
+	
+	Importatnt:
+	
+	Example Workflow:
+	The application starts with the @SpringBootApplication annotated class.
+	Spring Boot scans for components (@Controller, @Service, @Repository).
+	Requests come in via a @Controller or @RestController.
+	The controller interacts with a @Service to process business logic.
+	The service interacts with a @Repository to access data.
+	The results are returned to the controller and then to the client.
+	
+-------------------------------------------------------------	Flow chat:--------------------------------------------
+	
+													@SpringBootApplication
+												   ↓
+												@Configuration (for Beans)
+												   ↓
+												@EnableAutoConfiguration
+												   ↓
+												@ComponentScan (Scans and registers components)
+												   ↓
+												@Controller / @RestController ---------------> @Service ---------------> @Repository 
+																					↑
+																					↓
+																			  @Autowired (Dependency Injection)
+
+
+finally prepare for below points annotation specificall covers all moajor annotation
+----------------------------------------------------------------------------------------------
+1. Spring Data JPA Annotations
+
+2. Configuration and Dependency Injection
+
+3. Component Scanning and Bean Management
+
+4. Spring Security Annotations
+
+5. Core Annotations
+
+6. Web and REST Annotations
+
+7. Testing Annotations
+
+
+
+reference-link code exampl:  https://chatgpt.com/share/53548155-99ee-4fc1-a841-5a01ddc7f65e
+
+----------------------Spring Framework Annotations-------------------------
+
+		1. Spring Data JPA Annotations
+
+		@Entity: Marks a class as an entity.
+		@Table: Specifies the table for the entity.
+		@Id: Defines the primary key.
+		@GeneratedValue: Strategy for primary key generation.
+		@Column: Defines a column in the table.
+		@Repository: Indicates a DAO class.
+
+		2. Configuration and Dependency Injection
+
+		@Configuration: Declares a class as a source of bean definitions.
+		@Bean: Defines a bean.
+		@Autowired: Injects dependencies.
+		@Qualifier: Specifies which bean to inject.
+		@Primary: Gives preference to a bean.
+
+		3. Component Scanning and Bean Management
+
+		@Component: Marks a class as a Spring-managed component.
+		@Service: Service-layer beans.
+		@Repository: DAO beans.
+		@Controller: Spring MVC controllers.
+		@RestController: RESTful web services.
+		@Scope: Defines bean scope.
+
+		4. Spring Security Annotations
+
+		@EnableWebSecurity: Enables Spring Security.
+		@Secured: Specifies roles for method access.
+		@PreAuthorize: Specifies method access using expressions.
+		@RolesAllowed: Specifies allowed roles (JSR-250).
+
+		5. Core Annotations
+
+		@Value: Injects values from properties.
+		@PostConstruct: Method executed after bean initialization.
+		@PreDestroy: Method executed before bean destruction.
+
+		6. Web and REST Annotations
+
+		@RequestMapping: Maps HTTP requests to methods.
+		@GetMapping: Shorthand for GET method.
+		@PostMapping: Shorthand for POST method.
+		@PutMapping: Shorthand for PUT method.
+		@DeleteMapping: Shorthand for DELETE method.
+		@PathVariable: Binds path variables.
+		@RequestParam: Binds request parameters.
+
+		7. Testing Annotations
+
+		@SpringBootTest: For Spring Boot application context in tests.
+		@DataJpaTest: For JPA testing.
+		@WebMvcTest: For Spring MVC controllers.
+		@MockBean: Replaces beans with mocks in tests.

@@ -60,7 +60,39 @@ const Edit = () => {
     { name: "Python" },
     { name: "Django" },
     { name: "Rust" },
-  ];
+    { name: "HTML" },
+    { name: "CSS" },
+    { name: "TypeScript" },
+    { name: "React.js" },
+    { name: "Angular" },
+    { name: "Vue.js" },
+    { name: "SASS" },
+    { name: "Bootstrap" },
+    { name: "Tailwind CSS" },
+    { name: "Material-UI" },
+    { name: "Redux" },
+    { name: "Node.js" },
+    { name: "Express.js" },
+    { name: "Spring Boot" },
+    { name: "Flask" },
+    { name: "Ruby on Rails" },
+    { name: "PHP" },
+    { name: "Laravel" },
+    { name: "C#" },
+    { name: ".NET Core" },
+    { name: "Golang" },
+    { name: "Kotlin" },
+    { name: "MySQL" },
+    { name: "PostgreSQL" },
+    { name: "MongoDB" },
+    { name: "Redis" },
+    { name: "Docker" },
+    { name: "Kubernetes" },
+    { name: "AWS" },
+    { name: "Azure" },
+    { name: "Google Cloud Platform" }
+];
+
 
   return (
     <Paper sx={{ padding: "1%" }} elevation={0}>

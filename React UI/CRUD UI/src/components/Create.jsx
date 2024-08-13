@@ -12,7 +12,45 @@ import { useNavigate } from "react-router-dom";
 const initial = { postId: "", postProfile: "", reqExperience: 0, postTechStack: [], postDesc: "" };
 
 const Create = () => {
-  const skillSet = ["Javascript", "Java", "Python", "Django", "Rust"];
+  const skillSet = [
+    "Javascript",
+    "Java",
+    "Python",
+    "Django",
+    "Rust",
+    "HTML",
+    "CSS",
+    "TypeScript",
+    "React.js",
+    "Angular",
+    "Vue.js",
+    "SASS",
+    "Bootstrap",
+    "Tailwind CSS",
+    "Material-UI",
+    "Redux",
+    "Node.js",
+    "Express.js",
+    "Spring Boot",
+    "Flask",
+    "Ruby on Rails",
+    "PHP",
+    "Laravel",
+    "C#",
+    ".NET Core",
+    "Golang",
+    "Kotlin",
+    "MySQL",
+    "PostgreSQL",
+    "MongoDB",
+    "Redis",
+    "Docker",
+    "Kubernetes",
+    "AWS",
+    "Azure",
+    "Google Cloud Platform"
+];
+
 
   // we can use json formate also and access in html also deffirent way as below mentioned
   //             {skillSet.map(({name}, index) => ( 

@@ -29,9 +29,9 @@ public class SpringDataJpa1Application {
 		s3.setMarks(80);
 		s3.setRollNo(103);
 
-//		repo.save(s1);
-//		repo.save(s2);
-//		repo.save(s3);
+		repo.save(s1);
+		repo.save(s2);
+		repo.save(s3);
 
 		System.out.println(repo.findAll());// to fetch and display all rows from table.
 //		System.out.println(repo.findById(101));// display based on Id.

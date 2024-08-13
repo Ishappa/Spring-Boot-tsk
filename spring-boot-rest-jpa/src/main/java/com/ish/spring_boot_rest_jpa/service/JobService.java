@@ -12,8 +12,6 @@ import java.util.Optional;
 @Service
 public class JobService {
 
-
-
     @Autowired
     private JobRepo jobRepo;
 

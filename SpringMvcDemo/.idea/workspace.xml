@@ -5,39 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48c34045-9ba9-4323-a227-c8e48469b3f1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Spring-JavaConfig-Ioc/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Spring-JavaConfig-Ioc/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Spring-JavaConfig-Ioc/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Spring-JavaConfig-Ioc/src/main/java/com/ish/Alien.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Spring-JavaConfig-Ioc/src/main/java/com/ish/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Spring-JavaConfig-Ioc/src/main/java/com/ish/Computer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Spring-JavaConfig-Ioc/src/main/java/com/ish/Desktop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Spring-JavaConfig-Ioc/src/main/java/com/ish/Laptop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Spring-JavaConfig-Ioc/src/main/java/com/ish/config/AppConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Spring-JavaConfig-Ioc/src/test/java/com/ish/AppTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-data-rest1/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-data-rest1/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-data-rest1/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-data-rest1/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-data-rest1/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-data-rest1/src/main/java/com/ish/spring_data_rest1/SpringDataRest1Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-data-rest1/src/main/java/com/ish/spring_data_rest1/repo/JobRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-data-rest1/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-data-rest1/src/test/java/com/ish/spring_data_rest1/SpringDataRest1ApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../JavaSpringNotes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSpringNotes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MavenDemo/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MavenDemo/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../React UI/CRUD UI/src/components/AllPosts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../React UI/CRUD UI/src/components/AllPosts.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBootDemo/src/main/java/com/ish/app/SpringBootDemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBootDemo/src/main/java/com/ish/app/SpringBootDemoApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBootDemo/src/main/java/com/ish/app/model/Alien.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBootDemo/src/main/java/com/ish/app/model/Alien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBootDemo/src/main/java/com/ish/app/service/LaptopService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBootDemo/src/main/java/com/ish/app/service/LaptopService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringDemo/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringDemo/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringDemo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringDemo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../React UI/CRUD UI/src/components/Create.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../React UI/CRUD UI/src/components/Create.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../React UI/CRUD UI/src/components/Edit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../React UI/CRUD UI/src/components/Edit.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Data-Jpa-1/src/main/java/com/ish/Spring_Data_Jpa_1/SpringDataJpa1Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Data-Jpa-1/src/main/java/com/ish/Spring_Data_Jpa_1/SpringDataJpa1Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/ish-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/ish-servlet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ish/SpringMvcDemo/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ish/SpringMvcDemo/Employee.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ish/SpringMvcDemo/EmployeeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ish/SpringMvcDemo/EmployeeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ish/SpringMvcDemo/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ish/SpringMvcDemo/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/views/index_jsp.java" beforeDir="false" afterPath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/views/index_jsp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/views/result_jsp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/views/result_jsp.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../spring-boot-rest-jpa/src/main/java/com/ish/spring_boot_rest_jpa/service/JobService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-boot-rest-jpa/src/main/java/com/ish/spring_boot_rest_jpa/service/JobService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +46,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/SpringProject-All-Telusko/SpringMvcDemo&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/SpringProject-jsp/Projects-with-Spring-Boot/VehicleDB&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;

@@ -1,0 +1,3 @@
+13-Aug-2024 08:42:27.456 INFO [main] org.apache.catalina.core.ApplicationContext.log No Spring WebApplicationInitializer types detected on classpath
+13-Aug-2024 08:42:31.249 INFO [http-nio-8080-exec-1] org.apache.catalina.core.ApplicationContext.log Initializing Spring DispatcherServlet 'ish'
+13-Aug-2024 08:59:00.031 INFO [Thread-1] org.apache.catalina.core.ApplicationContext.log Destroying Spring FrameworkServlet 'ish'
