@@ -1,4 +1,4 @@
-package com.ish.spring_sec_1;
+package com.ish.spring_sec_1.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

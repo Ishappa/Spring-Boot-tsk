@@ -1,4 +1,4 @@
-package com.ish.spring_sec_1;
+package com.ish.spring_sec_1.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +12,12 @@ public class HelloController {
 //    }
 
 //    get session id for jus for practice and checking for each url once we logged in
-@GetMapping("/")
-public String message(HttpServletRequest request){
-    return "Hello world : Session Id "+request.getSession().getId();
-}
-    @GetMapping("/about")
+
+    @GetMapping("/")
+    public String greeting(){
+        return "Welcome to Spring security World..........! get a session Id use session";
+    }
+    @GetMapping("/session")
     public String about(HttpServletRequest request){
     return "This is ABout : Session Id "+request.getSession().getId();
     }

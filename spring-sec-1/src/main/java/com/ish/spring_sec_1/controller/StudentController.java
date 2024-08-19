@@ -1,5 +1,6 @@
-package com.ish.spring_sec_1;
+package com.ish.spring_sec_1.controller;
 
+import com.ish.spring_sec_1.model.Student;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;
