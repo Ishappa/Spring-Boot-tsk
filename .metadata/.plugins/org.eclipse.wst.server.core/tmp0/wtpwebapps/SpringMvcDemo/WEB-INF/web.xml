@@ -5,13 +5,13 @@
          version="3.1">
 
   <display-name>Archetype Created Web Application</display-name>
-
+<!--                Step 1                     -->
   <servlet>
     <servlet-name>ish</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     
   </servlet>
-
+<!--Step 2-->
   <servlet-mapping>
     <servlet-name>ish</servlet-name>
     <url-pattern>/</url-pattern>

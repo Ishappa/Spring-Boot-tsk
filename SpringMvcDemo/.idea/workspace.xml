@@ -5,16 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48c34045-9ba9-4323-a227-c8e48469b3f1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../spring-sec-1/src/main/java/com/ish/spring_sec_1/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-sec-1/src/main/java/com/ish/spring_sec_1/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.log" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.resources/.projects/SpringMvcDemo/org.eclipse.jdt.core/state.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.egit.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.egit.core.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.debug.core/.launches/Tomcat v10.1 Server at localhost.launch" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.debug.core/.launches/Tomcat v10.1 Server at localhost.launch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.debug.ui/launchConfigurationHistory.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.debug.ui/launchConfigurationHistory.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/1865797976.index" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/1865797976.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/savedIndexNames.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/savedIndexNames.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.m2e.core/workspaceState.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.m2e.core/workspaceState.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.m2e.core/workspacestate.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.m2e.core/workspacestate.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.jsdt.core/externalLibsTimeStamps" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.jsdt.core/externalLibsTimeStamps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.server.core/publish/publish1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.server.core/publish/publish1.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.server.core/tmp0/publish.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.server.core/tmp0/publish.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SpringMvcDemo/META-INF/maven/com.ish/SpringMvcDemo/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SpringMvcDemo/META-INF/maven/com.ish/SpringMvcDemo/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SpringMvcDemo/META-INF/maven/com.ish/SpringMvcDemo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SpringMvcDemo/META-INF/maven/com.ish/SpringMvcDemo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SpringMvcDemo/WEB-INF/classes/com/ish/SpringMvcDemo/Employee.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SpringMvcDemo/WEB-INF/classes/com/ish/SpringMvcDemo/EmployeeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SpringMvcDemo/WEB-INF/classes/com/ish/SpringMvcDemo/HomeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SpringMvcDemo/WEB-INF/ish-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SpringMvcDemo/WEB-INF/ish-servlet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SpringMvcDemo/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SpringMvcDemo/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.validation/dep.index" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.wst.validation/dep.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/version.ini" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/version.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../JavaSpringNotes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSpringNotes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../React UI/CRUD UI/src/components/Create.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../React UI/CRUD UI/src/components/Create.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../React UI/CRUD UI/src/components/Edit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../React UI/CRUD UI/src/components/Edit.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Data-Jpa-1/src/main/java/com/ish/Spring_Data_Jpa_1/SpringDataJpa1Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Data-Jpa-1/src/main/java/com/ish/Spring_Data_Jpa_1/SpringDataJpa1Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/views/index_jsp.java" beforeDir="false" afterPath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/views/index_jsp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/views/result_jsp.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/views/result_jsp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-boot-rest-jpa/src/main/java/com/ish/spring_boot_rest_jpa/service/JobService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-boot-rest-jpa/src/main/java/com/ish/spring_boot_rest_jpa/service/JobService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletEx/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../ServletEx/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-JavaConfig-Ioc/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-JavaConfig-Ioc/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ish/SpringMvcDemo/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ish/SpringMvcDemo/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ish/SpringMvcDemo/EmployeeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ish/SpringMvcDemo/EmployeeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ish/SpringMvcDemo/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ish/SpringMvcDemo/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.ish/SpringMvcDemo/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.ish/SpringMvcDemo/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.ish/SpringMvcDemo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.ish/SpringMvcDemo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-sec-1/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-sec-1/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-sec-1/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-sec-1/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,17 +69,17 @@
     <option name="showLibraryContents" value="true" />
     <option name="sortKey" value="BY_TIME_DESCENDING" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/SpringProject-jsp/Projects-with-Spring-Boot/VehicleDB&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "E:/SpringProject-All-Telusko/SpringMvcDemo",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Tomcat: SpringMvcDemo" type="com.poratu.idea.plugins.tomcat">
       <predefined_log_file enabled="true" id="Tomcat Localhost Log" />

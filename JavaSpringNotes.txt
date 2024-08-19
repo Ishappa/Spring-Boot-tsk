@@ -131,7 +131,8 @@ ex:in pjct structure under resourcepackage->for create table create schema.sql f
 	spring.datasource.password = root
 	spring.datasource.driver-class-name = com.mysql.cj.jdbc.Driver
 
-------------------Java Servlet/ web app-------------
+------------------Java Servlet/ web app----------------------------------------------------------
+
 ->create a mvm project and add dependencies in pom
 1. jakarta servlet -4.0.4
 2. tomcat embedded -8.5.96
@@ -560,7 +561,7 @@ example:
     }
 
 
---------------------Spring Security-----------------------
+-------------------------------------------------SPRING SECURITY----------------------------------------------
 
 1. Application should work properly.
 2. good performance of application.
@@ -594,29 +595,278 @@ Create a Project:
 			spring.security.user.name=ish
 			spring.security.user.password=1234
 
+-----------CSRF-----------------------
+-->if 3rd party try to access session id they should have csrf token else they cant enter accss only by seesion id, spring will provide to our site for security purpose.
+-->working with REST crud methods we can work with only get method because its safe method.
+--> when you working with update or post we should need CSRF token for authention or authorize accessible.
+--> set header in X-CSRF-TOKEN as your csrf token write a get method for csrf token then paste it in header.
+
+exampl:   @GetMapping("csrf-token")
+    public CsrfToken getcsrf(HttpServletRequest request){
+        return (CsrfToken) request.getAttribute("_csrf");
+    }
+
+few chnages also needed to make site more secure
+===================================== ==============================
+
+1. server.servlet.session.cookies.same-site=strict                                (no one can redirct to our site by 3rd party)
+
+-->	This configuration increases security by ensuring that session cookies are only sent with requests from your site, 
+	blocking them from cross-site requests. This helps prevent certain CSRF attacks.
+	
+2. generates new sessionId for each request by using Secuity configuration.
+
+	*StateFull: After login every requsrt from user even refresed for each time same session ID will be in cookies . 
+	*StateLess: After login every requsrt from user even refresed for each time, new session ID will be generate in cookies . 
+
+-------------Making site as a stateless mean no need session csrf token for post and put and write our own sec config-----------------------
+
+-->create spring security config class to create our own security configuration instead of default spring security configuration.
+
+- disabling csrf token generates--
+-->making site as stateless. means it should generates new session id for each request and refreshed the page and no need to pass csrf token.
+
+-->Important : 
+--> make generates new sessionId each request(it will make a secure applction) or evry time. they can't acces our server.
+
+Create a multiple users
+========================================
+  // for provide own user details
+   
+example:@Bean
+    public UserDetailsService userDetailsService(){
+	    UserDetails user = User
+                            .withDefaultPasswordEncoder()
+                            .username("ish")
+                            .password("1234")
+                            .roles("USER")
+                            .build();
+
+        UserDetails admin = User
+                            .withDefaultPasswordEncoder()
+                            .username("admin")
+                            .password("admin")
+                            .roles("ADMIN")
+                            .build();
+
+        return new  InMemoryUserDetailsManager(user,admin);
+    }
+
+-->we should connect db using application.properties  
+-->we need to create a bean for AuthenticationProvideer for authenticate the user details.
+--> then it store in object using DaoAuthenticationProvider. 
+
+-------------------STEPS TO CONNECT OR GET USER DETAILS FROM DB TO VALIDATE FOR LOGIN for multiple users login------------------
+1. inside Congfig class:
+-->	use @configeration and @EnableWebSecurity
+
+-->	@Autowired
+    private  UserDetailsService userDetailsService;
 
 
+-->    @Bean
+    public AuthenticationProvider authenticationProvider()
+
+    {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+
+        provider.setUserDetailsService(userDetailsService);
+       // provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+	    provider.setPasswordEncoder(new BCryptPasswordEncoder(12));		//--> convert your entering password to as a encoded then matching with db
+
+        return provider;
+    }
+
+2. create User model class and declare varible whatever used in table in db.
+-->
+@Data
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    private int id;
+    private String username;
+    private String password;
+
+}
+
+3. create dao package and create repo interface
+
+--> getting the user detail by username.
+
+@Repository
+public interface UserRepo extends JpaRepository<User, Integer> {
+    User findByUsername(String username);
+}
+
+4. create modelclass as a UserPrinciple or any name like UserDetailsByname 
+
+-->UserDetails is a inbuilt interface implement all methods.and get username and getpassword from user.
+--> create User varible and impoert our use model class package pass user as constructor to the below class.
+
+public class UserPrincipal implements UserDetails {
+
+    private User user;
+
+    public UserPrincipal(User user){
+        this.user=user;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singleton(new SimpleGrantedAuthority("USER"));
+    }
+
+    @Override
+    public String getPassword() {
+        return user.getPassword();
+    }
+
+    @Override
+    public String getUsername() {
+        return user.getUsername();
+    }
+
+5. create service class MyUserDetailsService and implemet inbuilt UserDetailsService and override methods. (org.springframework.security.core.userdetails.)
+--> here using repo obj calling the method inside overriden method and return the new UserPrincipal(user);
+
+@Service
+public class MyUserDetailsService implements UserDetailsService {
+
+    @Autowired
+    private UserRepo repo;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+      User user = repo.findByUsername(username);
+        if(user==null){
+            System.out.println("User 404");
+            throw new UsernameNotFoundException("User 404");
+        }
+        return new UserPrincipal(user);
+    }
+}
+
+6. create a user with encoded password.
+
+--> to achive this while storing the password we have to enocode it. 
+--> we have to create controller for register user
+
+@RestController
+public class RegisterUserController {
+
+    @Autowired
+    private RegisterUserService service;
+    @PostMapping("register")
+    public User register(@RequestBody User user){
+     return service.addUser(user);
+    }
+}
+
+--> we have to create a service for register and save the user using jpa here we have to encode the password .
+
+@Service
+public class RegisterUserService {
+
+    @Autowired
+    private UserRepo repo;
+
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+
+    public User addUser(User user){
+       user.setPassword(encoder.encode(user.getPassword()));
+        System.out.println(user.getPassword());
+        return repo.save(user);
+    }
+}
 
 
+Key Points to Remember:
+---------------------------------------
+1. Configuration Class:
+
+Annotate your configuration class with @Configuration and @EnableWebSecurity.
+Autowire the UserDetailsService to load user-specific data.
+Define an AuthenticationProvider bean using DaoAuthenticationProvider for database authentication. 
+Ensure the correct UserDetailsService and PasswordEncoder are set.
+
+2. User Entity:
+
+Ensure your User entity class is properly annotated with @Entity and @Table to map to the correct database table.
+Include all necessary fields (id, username, password) with appropriate annotations like @Id for the primary key.
+
+3. User Repository:
+
+The UserRepo interface should extend JpaRepository to leverage Spring Data JPA.
+The custom method findByUsername(String username) allows finding a user by their username.
+
+4. Custom UserDetails Implementation:
+
+Implement the UserDetails interface in a class (e.g., UserPrincipal).
+Provide implementations for getAuthorities(), getPassword(), and getUsername() based on your User entity.
+Use Collections.singleton(new SimpleGrantedAuthority("USER")) to assign a default role. This can be customized as needed.
+
+5. Custom UserDetailsService Implementation:
+
+Implement UserDetailsService in a service class (e.g., MyUserDetailsService).
+Autowire the UserRepo to access the database.
+Override loadUserByUsername(String username) to fetch the user and wrap it in your UserPrincipal class.
 
 
+-----------------------------------------USERSTANDING WORKFLOW FOR THE ABOVE LOGIN TASK---------------------------------
+1. User Attempts to Log In
+Class/Component Involved: Login form or HTTP request
+Action: A user submits a login request (typically via a form or an HTTP request) with a username and password.
 
+2. Spring Security Filter Chain
+Class/Component Involved: SecurityFilterChain
+Action: The request passes through Spring Security's filter chain. The filter responsible for authentication is UsernamePasswordAuthenticationFilter.
 
+3. Authentication Manager
+Class/Component Involved: AuthenticationManager
+Action: The UsernamePasswordAuthenticationFilter delegates the authentication request to the AuthenticationManager. 
+		This manager is responsible for processing the authentication request.
 
+4. Authentication Provider
+Class/Component Involved: DaoAuthenticationProvider
 
+Action: The AuthenticationManager delegates the request to an AuthenticationProvider, specifically the DaoAuthenticationProvider (configured in your @Bean method).
 
+Method Called: authenticate(Authentication authentication)
 
+This method calls the UserDetailsService to load user-specific data.
 
+5. Loading User Details
+Class/Component Involved: MyUserDetailsService (your custom implementation of UserDetailsService)
+Method Called: loadUserByUsername(String username)
+Action: This method retrieves the User entity from the database using the UserRepo.
 
+6. User Details Loaded
+Class/Component Involved: UserPrincipal (your custom implementation of UserDetails)
 
+Action: The User entity is wrapped into a UserPrincipal object.
 
+Method Implemented:
 
+getPassword(): Returns the password of the user.
+getUsername(): Returns the username of the user.
+getAuthorities(): Returns the authorities (roles) of the user.
 
+7. Password Verification
+Class/Component Involved: DaoAuthenticationProvider
+Method Called: additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication)
+Action: Compares the password provided by the user with the password retrieved from the UserPrincipal (which was fetched from the database). 
+		The comparison uses the configured PasswordEncoder (e.g., NoOpPasswordEncoder).
 
+8. Successful Authentication
+Class/Component Involved: AuthenticationManager & SecurityContextHolder
 
+Action: If the password matches, the DaoAuthenticationProvider returns an Authentication object, which is then stored in the SecurityContextHolder.
 
+Security Context: Stores the authenticated user's details and allows access to them across the application.
 
-
+9. User Redirected
+Action: Upon successful authentication, the user is redirected to the originally requested URL or a default page.
 
 
 
@@ -855,3 +1105,156 @@ reference-link code exampl:  https://chatgpt.com/share/53548155-99ee-4fc1-a841-5
 		@DataJpaTest: For JPA testing.
 		@WebMvcTest: For Spring MVC controllers.
 		@MockBean: Replaces beans with mocks in tests.
+		
+		
+		
+---------------------------------------------------Exception Hirarchy----------------------------------
+		Throwable
+   |
+   |-- Error
+   |    |-- OutOfMemoryError                // JVM runs out of memory
+   |    |-- StackOverflowError              // Excessive deep recursion causes stack overflow
+   |    |-- ...                              // Other serious system errors
+   |
+   |-- Exception
+        |
+        |-- IOException (Checked)           // General I/O failure
+        |    |-- FileNotFoundException      // File not found during an I/O operation
+        |    |-- ...                         // Other I/O-related exceptions
+        |
+        |-- SQLException (Checked)          // Issues related to database access
+        |-- ClassNotFoundException (Checked)// Class not found when loading a class by name
+        |-- RuntimeException (Unchecked)    // General runtime exceptions (programming errors)
+             |-- NullPointerException       // Attempt to use an object reference that is null
+             |-- ArrayIndexOutOfBoundsException // Array index out of range
+             |-- IllegalArgumentException   // Invalid arguments passed to a method
+             |-- ArithmeticException        // Arithmetic operation error (e.g., division by zero)
+             |-- ...                         // Other runtime exceptions
+
+
+
+
+1. throw Keyword
+----------------------------------
+Definition:
+
+--> The throw keyword is used to explicitly throw an exception in Java. It can be used to throw either checked or unchecked exceptions.
+--> Used inside a method to actually throw an exception.
+
+example:			public class Example {
+--------			public static void checkAge(int age) {
+						if (age < 18) {
+							throw new IllegalArgumentException("Age must be 18 or older.");
+						}
+					}
+
+					public static void main(String[] args) {
+						checkAge(16); // This will throw an IllegalArgumentException
+					}
+				}
+
+2. throws Keyword
+Definition:
+
+--> The throws keyword is used in a method's signature to declare that the method might throw one or more exceptions. 
+	It passes the responsibility of handling those exceptions to the method's caller.
+	
+example: 
+			import java.io.IOException;
+
+			public class Example {
+				public static void readFile() throws IOException {
+					// Code that might throw an IOException
+					throw new IOException("File not found");
+				}
+
+				public static void main(String[] args) {
+					try {
+						readFile(); // This might throw an IOException
+					} catch (IOException e) {
+						System.out.println("Caught IOException: " + e.getMessage());
+					}
+				}
+			}
+			
+			
+-----------------------Serialization and DeSerialization------------------------------
+1. Serialization: is a process
+
+	--> Convert an object into a byte stream(bytecode) machine readeable.
+	-->Write this byte stream to a file, send over a network, or store it in a database.
+	
+example:  --> Serializable is a marker insterface makes class as a serializable class
+
+			import java.io.Serializable;
+
+			public class User implements Serializable {
+				private static final long serialVersionUID = 1L;  // This helps in versioning during serialization
+
+				private String username;
+				private String email;
+
+				public User(String username, String email) {
+					this.username = username;
+					this.email = email;
+				}
+
+				// Getters and setters (optional)
+			}
+			
+			//------------------main class
+			
+			import java.io.FileOutputStream;
+			import java.io.IOException;
+			import java.io.ObjectOutputStream;
+
+			public class SerializeExample {
+				public static void main(String[] args) {
+					User user = new User("Ishwar", "ishwar@example.com");
+
+					try (FileOutputStream fileOut = new FileOutputStream("user.ser");
+						 ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+						out.writeObject(user); // Serialize the object
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+					System.out.println("User object serialized to user.ser");
+				}
+			}
+
+ 
+
+2. Deserialization:
+
+	-->Read the byte stream from a file, network, or database.
+	-->Convert the byte stream back into an object.
+
+example: Normal class can consider above one
+
+		//----------main class ---
+
+		import java.io.FileInputStream;
+		import java.io.IOException;
+		import java.io.ObjectInputStream;
+
+		public class DeserializeExample {
+			public static void main(String[] args) {
+				try (FileInputStream fileIn = new FileInputStream("user.ser");
+					 ObjectInputStream in = new ObjectInputStream(fileIn)) {
+					User user = (User) in.readObject(); // Deserialize the object from the file
+					System.out.println("User: " + user.getUsername() + ", Email: " + user.getEmail());
+				} catch (IOException | ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		
+Use Cases:
+--------------------
+1. File Storage: Persisting the state of an object in a file for future use (e.g., saving user preferences).
+
+2. Network Communication: Sending objects over the network between different systems (e.g., RPC or web services).
+
+3. Caching: Storing objects in a cache for quick retrieval (e.g., session data).

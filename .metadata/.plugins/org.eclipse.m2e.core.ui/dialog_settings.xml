@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="E:\SpringProject-All-Telusko\Servers"/>
 			<item value="E:\SpringProject-All-Telusko"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -26,6 +27,7 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="com.ish.servlet_One"/>
 			<item value="com.ish.SpringMvcDemo"/>
 			<item value="com.ish.com.ish.SpringMvcDemo"/>
 			<item value="com.ish"/>
@@ -34,6 +36,7 @@
 			<item value="com.ish"/>
 		</list>
 		<list key="artifactId">
+			<item value="servlet_One"/>
 			<item value="SpringMvcDemo"/>
 			<item value="com.ish.SpringMvcDemo"/>
 		</list>
